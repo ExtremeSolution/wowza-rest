@@ -1,5 +1,5 @@
-require "wowza_rest/version"
+require 'wowza_rest/version'
+require 'wowza_rest/client'
 
 module WowzaRest
-  # Your code goes here...
 end
