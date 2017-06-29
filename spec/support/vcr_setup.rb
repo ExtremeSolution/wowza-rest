@@ -1,6 +1,10 @@
 require 'vcr'
 
-VCR.configure do |vcr|
-  vcr.cassette_library_dir = 'spec/vcr'
-  c.hook_into :webmock
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/vcr'
+  config.hook_into :webmock
+  config.default_cassette_options = {
+    record: :new_episodes
+  }
+  config.configure_rspec_metadata!
 end

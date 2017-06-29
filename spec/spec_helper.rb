@@ -2,6 +2,7 @@ require 'dotenv/load'
 require 'bundler/setup'
 require 'webmock/rspec'
 require 'wowza_rest'
+require 'support/vcr_setup'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
