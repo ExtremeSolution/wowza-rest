@@ -1,6 +1,6 @@
 module WowzaRest
   module Applications
-    def get_applications
+    def applications
       connection.request(:get, '/applications').parsed_response['applications']
     end
 
