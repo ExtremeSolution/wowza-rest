@@ -10,3 +10,6 @@
 
 # rspec failure tracking
 .rspec_status
+
+# dotenv env files
+.env
