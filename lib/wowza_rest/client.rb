@@ -10,7 +10,7 @@ module WowzaRest
 
     def initialize(options = {})
       options.each do |key, value|
-        instance_variable_set("@#{key.to_s}", value)
+        instance_variable_set("@#{key}", value)
       end
       @connection = WowzaRest::Connection.new(base_uri, @username, @password)
     end
