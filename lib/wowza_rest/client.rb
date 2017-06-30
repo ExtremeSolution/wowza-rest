@@ -29,8 +29,7 @@ module WowzaRest
     end
 
     def base_uri
-      "#{host}:#{port}/#{api_version}
-      /servers/#{server_name}/vhosts/#{vhost}"
+      "#{host}:#{port}/#{api_version}/servers/#{server_name}/vhosts/#{vhost}"
     end
   end
 end
