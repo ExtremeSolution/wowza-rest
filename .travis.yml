@@ -8,3 +8,4 @@ before_install:
   - gem install bundler
   - gem update --system
   - gem --version
+  - bin/setup
