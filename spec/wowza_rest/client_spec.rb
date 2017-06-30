@@ -21,7 +21,9 @@ RSpec.describe WowzaRest::Client do
   end
 
   it 'has a valid base uri' do
-    expect(client.base_uri).to eq '127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_'
+    expect(client.base_uri).to(
+      eq '127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_'
+    )
   end
 
   it 'has a valid connection object' do
