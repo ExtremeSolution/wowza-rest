@@ -1,0 +1,5 @@
+AllCops:
+  Exclude:
+    - 'wowza_rest.gemspec'
+Documentation:
+  Enabled: false
