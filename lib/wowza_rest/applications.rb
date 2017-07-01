@@ -5,7 +5,8 @@ module WowzaRest
     end
 
     def get_application(app_name)
-      connection.request(:get, "/applications/#{app_name}").parsed_response
+      response = connection.request(:get, "/applications/#{app_name}")
+      response.response.code == '200' ? response.parsed_response : nil
     end
   end
 end

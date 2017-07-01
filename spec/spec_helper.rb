@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'webmock/rspec'
 require 'wowza_rest'
 require 'support/vcr_setup'
+require 'json'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
