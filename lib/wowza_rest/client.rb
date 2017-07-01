@@ -1,9 +1,11 @@
 require 'wowza_rest/api'
 require 'wowza_rest/connection'
+require 'wowza_rest/errors'
 
 module WowzaRest
   class Client
     include WowzaRest::API
+    include WowzaRest::Errors
 
     attr_accessor :host, :port, :username, :password, :server_name,
                   :api_version, :vhost
