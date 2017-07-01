@@ -4,5 +4,9 @@ AllCops:
     - 'wowza_rest.gemspec'
     - 'bin/**/*'
     - 'vendor/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'wowza_rest.gemspec'
+    - 'spec/**/*'
 Documentation:
   Enabled: false
