@@ -2,10 +2,14 @@ require 'spec_helper'
 
 RSpec.describe WowzaRest::Client do
   let(:client) do
-    described_class.new(host: '127.0.0.1',
-                        port: '8087',
+    described_class.new(host: '127.0.0.1', port: '8087',
                         username: ENV['WOWZA_USERNAME'],
                         password: ENV['WOWZA_PASSWORD'])
+  end
+
+  let(:wrong_client) do
+    described_class.new(host: '127.0.0.1', port: '8087',
+                        username: 'username', password: 'wrongpassword')
   end
 
   it 'has a default server name' do
@@ -28,5 +32,11 @@ RSpec.describe WowzaRest::Client do
 
   it 'has a valid connection object' do
     expect(client.connection).to be_an_instance_of(WowzaRest::Connection)
+  end
+
+  it 'responds with 401 when using incorrect creds',
+     vcr: { cassette_name: 'all_applications_unauthrized' } do
+    response = wrong_client.applications
+    expect(response['code']).to eq('401')
   end
 end
