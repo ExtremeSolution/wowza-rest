@@ -4,8 +4,8 @@ RSpec.describe WowzaRest::Client do
   let(:client) do
     described_class.new(host: '127.0.0.1',
                         port: '8087',
-                        username: ENV.fetch('WOWZA_USERNAME'),
-                        password: ENV.fetch('WOWZA_PASSWORD'))
+                        username: ENV['WOWZA_USERNAME'],
+                        password: ENV['WOWZA_PASSWORD'])
   end
 
   it 'has a default server name' do
