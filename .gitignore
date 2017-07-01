@@ -13,3 +13,6 @@
 
 # dotenv env files
 .env
+
+# rubocop files
+rubocop.html
