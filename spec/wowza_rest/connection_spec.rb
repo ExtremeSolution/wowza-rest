@@ -2,15 +2,20 @@ require 'spec_helper'
 
 RSpec.describe WowzaRest::Connection do
   let(:connection) do
-    WowzaRest::Connection.new('localhost', 'username', 'password')
+    described_class.new('localhost', 'username', 'password')
   end
 
   describe '#request' do
-    it 'calls the corresponding method passed in as the first parameter' do
-      expect(connection).to receive(:request)
-        .with(:get, 'localhost').once.and_call_original
-      expect(WowzaRest::Connection).to receive(:get).with('localhost', {}).once
-      connection.request(:get, 'localhost')
+    it 'responds' do
+      allow(connection).to receive(:request).with(:method_name, 'uri')
+      connection.request(:method_name, 'uri')
+      expect(connection).to have_received(:request)
+    end
+
+    it 'perform a request' do
+      stub_request(:get, 'localhost/path')
+      response = connection.request(:get, '/path').response
+      expect(response.code).to eq('200')
     end
   end
 end
