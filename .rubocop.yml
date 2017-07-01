@@ -1,5 +1,8 @@
+require: rubocop-rspec
 AllCops:
   Exclude:
     - 'wowza_rest.gemspec'
+    - 'bin/**/*'
+    - 'vendor/**/*'
 Documentation:
   Enabled: false
