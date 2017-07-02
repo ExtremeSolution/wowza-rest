@@ -83,4 +83,49 @@ RSpec.describe WowzaRest::Applications do
       end
     end
   end
+
+  describe '#update_application' do
+    context 'when app_name is not a string' do
+      it 'raises InvalidArgumentType error' do
+        expect do
+          client.update_application(123, field_to_be_updated: 'value')
+        end
+          .to raise_error WowzaRest::Errors::InvalidArgumentType
+      end
+    end
+
+    context 'when fields is not a hash' do
+      it 'raises InvalidArgumentType error' do
+        expect do
+          client.update_application('app_name', 'invalid_value')
+        end
+          .to raise_error WowzaRest::Errors::InvalidArgumentType
+      end
+    end
+
+    context 'when application is updated' do
+      it 'returns true',
+         vcr: { cassette_name: 'application_updated' } do
+        response = client.update_application('app_name', appType: 'VOD')
+        expect(response).to be true
+      end
+    end
+
+    context 'when application not exist' do
+      it 'returns false',
+         vcr: { cassette_name: 'application_update_not_exist' } do
+        response = client.update_application('not_existed_app', appType: 'VOD')
+        expect(response).to be false
+      end
+    end
+
+    context 'when fields hash is empty' do
+      it 'raises InvalidArgument error' do
+        expect do
+          client.update_application('not_existed_app', {})
+        end
+          .to raise_error WowzaRest::Errors::InvalidArgument
+      end
+    end
+  end
 end
