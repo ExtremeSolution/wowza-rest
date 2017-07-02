@@ -47,28 +47,40 @@ RSpec.describe WowzaRest::Client do
   context 'when creating a new object' do
     context 'when host is missing' do
       it 'raises MissingRequiredKeys error' do
-        expect { described_class.new(port: '8087', username: 'username', password: 'pass') }
+        expect do
+          described_class
+            .new(port: '8087', username: 'username', password: 'pass')
+        end
           .to raise_error WowzaRest::Errors::MissingRequiredKeys
       end
     end
 
     context 'when port is missing' do
       it 'raises MissingRequiredKeys error' do
-        expect { described_class.new(host: 'host', username: 'username', password: 'pass') }
+        expect do
+          described_class
+            .new(host: 'host', username: 'username', password: 'pass')
+        end
           .to raise_error WowzaRest::Errors::MissingRequiredKeys
       end
     end
 
     context 'when username is missing' do
       it 'raises MissingRequiredKeys error' do
-        expect { described_class.new(host: 'host', port: '8087', password: 'pass') }
+        expect do
+          described_class
+            .new(host: 'host', port: '8087', password: 'pass')
+        end
           .to raise_error WowzaRest::Errors::MissingRequiredKeys
       end
     end
 
     context 'when password is missing' do
       it 'raises MissingRequiredKeys error' do
-        expect { described_class.new(host: 'host', port: '8087', username: 'username') }
+        expect do
+          described_class
+            .new(host: 'host', port: '8087', username: 'username')
+        end
           .to raise_error WowzaRest::Errors::MissingRequiredKeys
       end
     end

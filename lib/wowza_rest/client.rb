@@ -38,14 +38,15 @@ module WowzaRest
     private
 
     def check_required_attrs(options)
-      required_attrs = [:host, :port, :username, :password]
+      required_attrs = %i[host port username password]
       missing_attrs = []
       required_attrs.each do |attr|
         missing_attrs << attr unless options.include? attr
       end
-      if missing_attrs.length > 0
-        raise WowzaRest::Errors::MissingRequiredKeys, "{ #{missing_attrs.join(' | ')} } missing"
-      end
+
+      return if missing_attrs.empty?
+      raise WowzaRest::Errors::MissingRequiredKeys,
+            "{ #{missing_attrs.join(' | ')} } missing"
     end
   end
 end
