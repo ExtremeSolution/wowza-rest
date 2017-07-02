@@ -12,6 +12,7 @@ module WowzaRest
     attr_reader :connection
 
     def initialize(options = {})
+      check_required_attrs(options)
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
@@ -32,6 +33,19 @@ module WowzaRest
 
     def base_uri
       "#{host}:#{port}/#{api_version}/servers/#{server_name}/vhosts/#{vhost}"
+    end
+
+    private
+
+    def check_required_attrs(options)
+      required_attrs = [:host, :port, :username, :password]
+      missing_attrs = []
+      required_attrs.each do |attr|
+        missing_attrs << attr unless options.include? attr
+      end
+      if missing_attrs.length > 0
+        raise WowzaRest::Errors::MissingRequiredKeys, "{ #{missing_attrs.join(' | ')} } missing"
+      end
     end
   end
 end

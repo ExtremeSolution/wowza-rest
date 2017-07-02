@@ -12,7 +12,7 @@ RSpec.describe WowzaRest::Client do
                         username: 'username', password: 'wrongpassword')
   end
 
-  context 'when instantiating a new object' do
+  context 'when a new object is instantiated' do
     it 'has a default server name' do
       expect(client.server_name).to eq '_defaultServer_'
     end
@@ -36,11 +36,41 @@ RSpec.describe WowzaRest::Client do
     end
   end
 
-  context 'when it has an invalid creds' do
+  context 'when it has an invalid username/password' do
     it 'responds with 401',
        vcr: { cassette_name: 'all_applications_unauthrized' } do
       response = wrong_client.applications
       expect(response['code']).to eq('401')
+    end
+  end
+
+  context 'when creating a new object' do
+    context 'when host is missing' do
+      it 'raises MissingRequiredKeys error' do
+        expect { described_class.new(port: '8087', username: 'username', password: 'pass') }
+          .to raise_error WowzaRest::Errors::MissingRequiredKeys
+      end
+    end
+
+    context 'when port is missing' do
+      it 'raises MissingRequiredKeys error' do
+        expect { described_class.new(host: 'host', username: 'username', password: 'pass') }
+          .to raise_error WowzaRest::Errors::MissingRequiredKeys
+      end
+    end
+
+    context 'when username is missing' do
+      it 'raises MissingRequiredKeys error' do
+        expect { described_class.new(host: 'host', port: '8087', password: 'pass') }
+          .to raise_error WowzaRest::Errors::MissingRequiredKeys
+      end
+    end
+
+    context 'when password is missing' do
+      it 'raises MissingRequiredKeys error' do
+        expect { described_class.new(host: 'host', port: '8087', username: 'username') }
+          .to raise_error WowzaRest::Errors::MissingRequiredKeys
+      end
     end
   end
 end
