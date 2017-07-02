@@ -18,25 +18,25 @@ module WowzaRest
       connection.request(:post, '/applications', body: app_body.to_json)
     end
 
-    def update_application(app_name, fields)
-      apply_update_application_checks(app_name, fields)
+    def update_application(app_name, config)
+      apply_update_application_checks(app_name, config)
       connection.request(:put, "/applications/#{app_name}",
-                         body: fields.to_json)['success']
+                         body: config.to_json)['success']
     end
 
     private
 
     # rubocop:disable Metrics/LineLength
-    def apply_update_application_checks(app_name, fields)
+    def apply_update_application_checks(app_name, config)
       if !app_name.is_a?(String)
         raise WowzaRest::Errors::InvalidArgumentType,
               "First argument expected to be String got #{app_name.class} instead"
-      elsif !fields.is_a?(Hash)
+      elsif !config.is_a?(Hash)
         raise WowzaRest::Errors::InvalidArgumentType,
-              "Second argument expected to be String got #{fields.class} instead"
-      elsif fields.empty?
+              "Second argument expected to be String got #{config.class} instead"
+      elsif config.empty?
         raise WowzaRest::Errors::InvalidArgument,
-              'Fields hash must have at least one attribute'
+              'Configuration hash must have at least one attribute'
       end
     end
     # rubocop:enable Metrics/LineLength
