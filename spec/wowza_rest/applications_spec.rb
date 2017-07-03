@@ -57,6 +57,56 @@ RSpec.describe WowzaRest::Applications do
       end
     end
 
+    context 'when using default configs' do
+      before do
+        stub_request(:post, "#{client.base_uri}/applications")
+        client.create_application(application_body)
+      end
+
+      it 'has httpCORSHeadersEnabled attribute in the request' do
+        expect(WebMock)
+          .to have_requested(:post, "#{client.base_uri}/applications")
+          .with(body: hash_including(:httpCORSHeadersEnabled))
+      end
+
+      it 'has clientStreamWriteAccess attribute in the request' do
+        expect(WebMock)
+          .to have_requested(:post, "#{client.base_uri}/applications")
+          .with(body: hash_including(:clientStreamWriteAccess))
+      end
+
+      it 'has securityConfig hash in the request' do
+        expect(WebMock)
+          .to have_requested(:post, "#{client.base_uri}/applications")
+          .with(body: hash_including(:securityConfig))
+      end
+
+      it 'has streamConfig hash in the request' do
+        expect(WebMock)
+          .to have_requested(:post, "#{client.base_uri}/applications")
+          .with(body: hash_including(:streamConfig))
+      end
+
+      it 'has modules hash in the request' do
+        expect(WebMock)
+          .to have_requested(:post, "#{client.base_uri}/applications")
+          .with(body: hash_including(:modules))
+      end
+    end
+
+    context 'when bypassing default_config options' do
+      before do
+        stub_request(:post, "#{client.base_uri}/applications")
+        client.create_application(application_body, false)
+      end
+
+      it 'has the same configs that was given' do
+        expect(WebMock)
+          .to have_requested(:post, "#{client.base_uri}/applications")
+          .with(body: application_body)
+      end
+    end
+
     context 'when application id is already exist' do
       it 'responds with failure response',
          vcr: { cassette_name: 'application_create_exists' } do
