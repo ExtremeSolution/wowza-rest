@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Wowza REST API Wrapper Gem.'
   spec.description   = 'Wowza REST API Wrapper Gem.'
-  spec.homepage      = 'https://github.com/hazemtaha/wowza_rest'
+  spec.homepage      = 'https://github.com/hazemtaha/wowza-rest'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
