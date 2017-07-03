@@ -24,6 +24,14 @@ module WowzaRest
                          body: config.to_json)['success']
     end
 
+    def delete_application(app_name)
+      unless app_name.is_a?(String)
+        raise WowzaRest::Errors::InvalidArgumentType,
+              "First argument expected to be String got #{app_name.class}"
+      end
+      connection.request(:delete, "/applications/#{app_name}")['success']
+    end
+
     private
 
     # rubocop:disable Metrics/LineLength

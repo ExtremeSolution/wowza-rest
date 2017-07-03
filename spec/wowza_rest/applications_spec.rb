@@ -128,4 +128,31 @@ RSpec.describe WowzaRest::Applications do
       end
     end
   end
+
+  describe '#delete_application' do
+    context 'when app_name is not a string' do
+      it 'raises InvalidArgumentType error' do
+        expect do
+          client.delete_application(123)
+        end
+          .to raise_error WowzaRest::Errors::InvalidArgumentType
+      end
+    end
+
+    context 'when application is deleted successfully',
+            vcr: { cassette_name: 'application_deleted' } do
+      it 'returns true' do
+        response = client.delete_application('app_name')
+        expect(response).to be true
+      end
+    end
+
+    context 'when an error occurs',
+            vcr: { cassette_name: 'application_delete_error' } do
+      it 'returns false' do
+        response = client.delete_application('app_name')
+        expect(response).to be false
+      end
+    end
+  end
 end
