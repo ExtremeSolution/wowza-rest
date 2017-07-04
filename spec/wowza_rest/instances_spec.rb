@@ -33,4 +33,50 @@ RSpec.describe WowzaRest::Instances do
       end
     end
   end
+
+  describe '#get_instance' do
+    context 'when not providing an instance name' do
+      before do
+        stub_request(:get, 'applications/app_name/instances/_definst_')
+      end
+
+      it 'uses _definst_ as a default instance name' do
+        client.get_instance('app_name')
+        expect(WebMock)
+          .to have_requested(
+            :get, "#{client.base_uri}/applications/app_name/instances/_definst_"
+          ).once
+      end
+    end
+
+    context 'when providing an instance name' do
+      before do
+        stub_request(:get, 'applications/app_name/instances/instance_name')
+      end
+
+      it 'requests the given instance name' do
+        client.get_instance('app_name', 'instance_name')
+        expect(WebMock)
+          .to have_requested(
+            :get, "#{client.base_uri}/applications/app_name/instances/instance_name"
+          ).once
+      end
+    end
+
+    context 'when app_name not exists' do
+      it 'returns nil',
+         vcr: { cassette_name: 'instance_application_not_exists' } do
+        response = client.get_instance('not_existed_app')
+        expect(response).to be_nil
+      end
+    end
+
+    context 'when a successfull request is made' do
+      it 'returns the requested instance hash',
+         vcr: { cassette_name: 'instance_found' } do
+        response = client.get_instance('app_name', 'instance_name')
+        expect(response['name']).to eq('instance_name')
+      end
+    end
+  end
 end
