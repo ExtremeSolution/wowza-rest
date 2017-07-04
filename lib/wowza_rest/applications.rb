@@ -1,4 +1,3 @@
-require 'json'
 module WowzaRest
   module Applications
     def applications
