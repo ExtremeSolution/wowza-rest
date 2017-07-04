@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 04 Jul 2017 14:26:05 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"serverName":"_defaultServer_","instanceList":[{"incomingStreams":[{"sourceIp":"wowz://192.168.3.32:55557","isPTZEnabled":false,"applicationInstance":"_definst_","name":"myStr","isRecordingSet":false,"isStreamManagerStream":false,"isPublishedToVOD":false,"isConnected":true,"ptzPollingInterval":2000,"ptzPollingIntervalMinimum":1000},{"sourceIp":"wowz://192.168.3.152:43186","isPTZEnabled":false,"applicationInstance":"_definst_","name":"myStream","isRecordingSet":false,"isStreamManagerStream":false,"isPublishedToVOD":false,"isConnected":true,"ptzPollingInterval":2000,"ptzPollingIntervalMinimum":1000}],"outgoingStreams":[],"recorders":[],"streamGroups":[],"name":"_definst_"}]}'
+    http_version: 
+  recorded_at: Tue, 04 Jul 2017 14:26:05 GMT
+recorded_with: VCR 3.0.3
