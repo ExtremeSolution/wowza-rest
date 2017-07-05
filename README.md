@@ -3,9 +3,7 @@
 [![Build Status](https://travis-ci.org/hazemtaha/wowza-rest.svg?branch=master)](https://travis-ci.org/hazemtaha/wowza-rest)
 [![Code Climate](https://codeclimate.com/github/hazemtaha/wowza_rest/badges/gpa.svg)](https://codeclimate.com/github/hazemtaha/wowza_rest)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/wowza_rest`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Ruby wrapper for Wowza Streaming Engine Rest API
 
 ## Installation
 
@@ -25,7 +23,68 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create Client:
+```ruby
+client = WowzaRest::Client.new(
+  host: 'WOWZA_ENGINE_IP_OR_URL',
+  port: 'PORT_NUMBER',
+  username: 'WOWZA_ENGINE_USERNAME',
+  password: 'WOWZA_ENGINE_PASSWORD'
+) 
+```
+
+#### Applications
+- List All Applications
+```ruby
+applications = client.applications
+```
+- Fetch single application
+```ruby
+application = client.get_application('APPLICATION_NAME')
+```
+- Create a new application
+```ruby
+client.create_application({
+	name: 'APPLICATION_NAME',
+	appType: 'LIVE|VOD'
+})
+```
+- Update Application
+```ruby
+client.update_application('APPLICATION_NAME', {
+# ... configs to be updated
+})
+```
+- Delete Application
+```ruby
+client.delete_application('APPLICATION_NAME')
+```
+
+### Instances
+- List all instances for an application
+```ruby
+client.instances('APPLICATION_NAME')
+```
+- Fetch single instance
+```ruby
+client.get_instance('APPLICATION_NAME', 'INSTANCE_NAME') 
+# instance name can be ommited and defaults to the default instance
+```
+- Get a single incoming stream monitoring stats
+```ruby
+client.get_incoming_stream_stat('APPLICATION_NAME', 'STREAM_NAME', 'INSTANCE_NAME')
+# instance name can be ommited and defaults to the default instance
+```
+
+### Publishers
+- Create publisher (Wowza SE Source)
+```ruby
+client.create_publisher('PUBLISHER_NAME', 'PUBLISHER_PASSWORD')
+```
+- Delete publisher (Wowza SE Source)
+```ruby
+client.delete_publisher('PUBLISHER_NAME')
+```
 
 ## Development
 
@@ -35,7 +94,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/wowza_rest. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/hazemtaha/wowza-rest. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
