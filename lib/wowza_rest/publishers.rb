@@ -5,5 +5,11 @@ module WowzaRest
         :post, "/publishers/#{name}", body: { password: password }.to_json
       )['success']
     end
+
+    def delete_publisher(name)
+      connection.request(
+        :delete, "/publishers/#{name}"
+      )['success']
+    end
   end
 end

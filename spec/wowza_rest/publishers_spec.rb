@@ -25,4 +25,22 @@ RSpec.describe WowzaRest::Publishers do
       end
     end
   end
+
+  describe '#delete_publisher' do
+    context 'when successfully deletes the publisher' do
+      it 'returns true',
+         vcr: { cassette_name: 'publisher_deleted' } do
+        response = client.delete_publisher('name')
+        expect(response).to be true
+      end
+    end
+
+    context 'when the publisher not exists' do
+      it 'returns false',
+         vcr: { cassette_name: 'publisher_not_exists' } do
+        response = client.delete_publisher('not_existed_publisher_name')
+        expect(response).to be false
+      end
+    end
+  end
 end
