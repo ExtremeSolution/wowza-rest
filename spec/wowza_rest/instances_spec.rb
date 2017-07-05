@@ -37,7 +37,10 @@ RSpec.describe WowzaRest::Instances do
   describe '#get_instance' do
     context 'when not providing an instance name' do
       before do
-        stub_request(:get, 'applications/app_name/instances/_definst_')
+        stub_request(
+          :get,
+          "#{client.base_uri}/applications/app_name/instances/_definst_"
+        )
       end
 
       it 'uses _definst_ as a default instance name' do
@@ -50,16 +53,17 @@ RSpec.describe WowzaRest::Instances do
     end
 
     context 'when providing an instance name' do
+      let(:endpoint) do
+        "#{client.base_uri}/applications/app_name/instances/instance_name"
+      end
+
       before do
-        stub_request(:get, 'applications/app_name/instances/instance_name')
+        stub_request(:get, endpoint)
       end
 
       it 'requests the given instance name' do
         client.get_instance('app_name', 'instance_name')
-        expect(WebMock)
-          .to have_requested(
-            :get, "#{client.base_uri}/applications/app_name/instances/instance_name"
-          ).once
+        expect(WebMock).to have_requested(:get, endpoint).once
       end
     end
 
@@ -74,9 +78,49 @@ RSpec.describe WowzaRest::Instances do
     context 'when a successfull request is made' do
       it 'returns the requested instance hash',
          vcr: { cassette_name: 'instance_found' } do
-        response = client.get_instance('app_name', 'instance_name')
+        response = client.get_instance(
+          'app_name', 'instance_name'
+        )
         expect(response['name']).to eq('instance_name')
       end
     end
   end
+  # rubocop:disable Metrics/LineLength
+  describe '#get_incoming_stream_stats' do
+    let(:endpoint) do
+      "#{client.base_uri}/applications/app_name/instances/_definst_/incomingstreams/stream_name/monitoring/current"
+    end
+
+    context 'when not providing an instance_name' do
+      before do
+        stub_request(:get, endpoint)
+      end
+
+      it 'uses _definst_ as a default instance name' do
+        client.get_incoming_stream_stats('app_name', 'stream_name')
+        expect(WebMock).to have_requested(:get, endpoint).once
+      end
+    end
+
+    context 'when application name given does not exist' do
+      it 'returns nil',
+         vcr: { cassette_name: 'incoming_streams_stat_not_existed_app' } do
+        response = client.get_incoming_stream_stats(
+          'not_existed_app', 'stream_name'
+        )
+        expect(response).to be_nil
+      end
+    end
+
+    context 'when it successfull fetches the stats' do
+      it 'returns a stats hash',
+         vcr: { cassette_name: 'incoming_streams_stat_found' } do
+        response = client.get_incoming_stream_stats(
+          'app_name', 'stream_name'
+        )
+        expect(response).not_to be_nil
+      end
+    end
+  end
+  # rubocop:enable Metrics/LineLength
 end
