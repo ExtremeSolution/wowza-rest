@@ -85,6 +85,10 @@ client.create_publisher('PUBLISHER_NAME', 'PUBLISHER_PASSWORD')
 ```ruby
 client.delete_publisher('PUBLISHER_NAME')
 ```
+### Server Status
+```ruby
+client.server_status
+```
 
 ## Development
 
