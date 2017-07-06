@@ -19,6 +19,15 @@ module WowzaRest
       @connection = WowzaRest::Connection.new(base_uri, @username, @password)
     end
 
+    def server_status
+      connection.class.base_uri "#{server_path}"
+      begin
+        connection.request(:get, '/status').parsed_response
+      rescue
+        nil
+      end
+    end
+
     def server_name
       @server_name || '_defaultServer_'
     end
@@ -31,8 +40,12 @@ module WowzaRest
       @vhost || '_defaultVHost_'
     end
 
+    def server_path
+      "#{host}:#{port}/#{api_version}/servers/#{server_name}"
+    end
+
     def base_uri
-      "#{host}:#{port}/#{api_version}/servers/#{server_name}/vhosts/#{vhost}"
+      "#{server_path}/vhosts/#{vhost}"
     end
 
     private

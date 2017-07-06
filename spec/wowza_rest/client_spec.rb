@@ -85,4 +85,25 @@ RSpec.describe WowzaRest::Client do
       end
     end
   end
+
+  describe '#server_status' do
+    context 'when server is up',
+            vcr: { cassette_name: 'server_up_status' } do
+      it 'returns server status hash' do
+        response = client.server_status
+        expect(response).not_to be_nil
+      end
+    end
+
+    context 'when server is down' do
+      before do
+        allow(client.connection).to receive(:request).and_raise(Errno::ECONNREFUSED)
+      end
+
+      it 'returns nil' do
+        response = client.server_status
+        expect(response).to be_nil
+      end
+    end
+  end
 end

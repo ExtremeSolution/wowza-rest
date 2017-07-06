@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 06 Jul 2017 14:39:44 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"version":"1499348681000","serverName":"_defaultServer_","serverVersion":"4.7.0","serverBuild":"20186","licenseType":"Developer","licenseExpireDate":"2017-11-09","serverMode":"Development","osName":"Linux","osVersion":"4.4.0-83-generic","osArchitecture":"amd64","osBitness":"Unknown","totalMemory":8283439104,"availableMemory":491945984,"processorCores":8,"gpuAcceleration":"Unknown","javaVersion":"1.8.0_77","javaVMVersion":"25.77-b03","javaBitness":"64","javaName":"Java
+        HotSpot(TM) 64-Bit Server VM","javaVendor":"Oracle Corporation","javaHome":"/usr/local/WowzaStreamingEngine-4.7.0/jre/jre","javaMaxHeapSize":"3160MB","timeRunning":3296.008,"currentConnections":0,"maxConnections":10,"maxIncommingStreams":3,"restAPIAvailable":true,"httpOriginAvailable":false,"transcoderLicensed":true,"transcoderAvailable":true,"transcoderWatermark":true,"transcoderLicenses":1,"transcoderLicensesInUse":0,"transcoderApplications":[],"dvrLicensed":true,"dvrInUse":false,"dvrApplications":[],"drmLicensed":true,"drmInUse":false,"drmApplications":[],"nativeBase":"linux","wseName":"Wowza
+        Streaming Engine 4 Developer Edition (Expires: Nov 09, 2017)"}'
+    http_version: 
+  recorded_at: Thu, 06 Jul 2017 14:39:44 GMT
+recorded_with: VCR 3.0.3
