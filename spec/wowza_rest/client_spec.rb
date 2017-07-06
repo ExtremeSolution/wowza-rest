@@ -97,7 +97,8 @@ RSpec.describe WowzaRest::Client do
 
     context 'when server is down' do
       before do
-        allow(client.connection).to receive(:request).and_raise(Errno::ECONNREFUSED)
+        allow(client.connection)
+          .to receive(:request).and_raise(Errno::ECONNREFUSED)
       end
 
       it 'returns nil' do

@@ -20,7 +20,7 @@ module WowzaRest
     end
 
     def server_status
-      connection.class.base_uri "#{server_path}"
+      connection.class.base_uri server_path.to_s
       begin
         connection.request(:get, '/status').parsed_response
       rescue
