@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hazemtaha/wowza-rest.svg?branch=master)](https://travis-ci.org/hazemtaha/wowza-rest)
 [![Code Climate](https://codeclimate.com/github/hazemtaha/wowza_rest/badges/gpa.svg)](https://codeclimate.com/github/hazemtaha/wowza_rest)
+[![Gem Version](https://badge.fury.io/rb/wowza_rest.svg)](https://badge.fury.io/rb/wowza_rest)
 
 Ruby wrapper for Wowza Streaming Engine Rest API
 
