@@ -21,13 +21,8 @@ RSpec.describe WowzaRest::Applications do
 
   describe '#get_application' do
     context 'when application is existed' do
-      before do
-        stub_request(:get, "#{client.base_uri}/applications/my_app")
-          .to_return(status: 200, body: { name: 'my_app' }.to_json,
-                     headers: { 'Content-Type' => 'application/json' })
-      end
-
-      it 'returns the application object' do
+      it 'returns the application object',
+         vcr: { cassette_name: 'application_found' } do
         application = client.get_application('my_app')
         expect(application['name']).to eq('my_app')
       end

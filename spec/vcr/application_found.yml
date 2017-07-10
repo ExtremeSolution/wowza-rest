@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Jul 2017 21:37:59 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"version":"1499722654000","serverName":"_defaultServer_","name":"my_app","appType":"Live","applicationTimeout":0,"pingTimeout":0,"repeaterQueryString":"","clientStreamReadAccess":"*","clientStreamWriteAccess":"*","avSyncMethod":"senderreport","maxRTCPWaitTime":12000,"httpCORSHeadersEnabled":true,"httpStreamers":["cupertinostreaming","smoothstreaming","sanjosestreaming","mpegdashstreaming"],"mediaReaderRandomAccessReaderClass":"","httpOptimizeFileReads":false,"mediaReaderBufferSeekIO":false,"captionLiveIngestType":"","securityConfig":{"serverName":"_defaultServer_","secureTokenVersion":0,"clientStreamWriteAccess":"*","publishRequirePassword":true,"publishPasswordFile":"","publishRTMPSecureURL":"","publishIPBlackList":"","publishIPWhiteList":"","publishBlockDuplicateStreamNames":false,"publishValidEncoders":"","publishAuthenticationMethod":"digest","playMaximumConnections":0,"playRequireSecureConnection":false,"secureTokenSharedSecret":"","secureTokenUseTEAForRTMP":false,"secureTokenIncludeClientIPInHash":false,"secureTokenHashAlgorithm":"","secureTokenQueryParametersPrefix":"","secureTokenOriginSharedSecret":"","playIPBlackList":"","playIPWhiteList":"","playAuthenticationMethod":"none"},"streamConfig":{"serverName":"_defaultServer_","streamType":"live","storageDir":"${com.wowza.wms.context.VHostConfigHome}/content","createStorageDir":false,"storageDirExists":true,"keyDir":"${com.wowza.wms.context.VHostConfigHome}/keys","liveStreamPacketizer":["cupertinostreamingpacketizer","mpegdashstreamingpacketizer","sanjosestreamingpacketizer","smoothstreamingpacketizer"],"httpRandomizeMediaName":false},"dvrConfig":{"serverName":"_defaultServer_","licenseType":"Developer","inUse":false,"dvrEnable":false,"windowDuration":0,"storageDir":"${com.wowza.wms.context.VHostConfigHome}/dvr","archiveStrategy":"append","dvrOnlyStreaming":false,"startRecordingOnStartup":true,"dvrEncryptionSharedSecret":"","dvrMediaCacheEnabled":false,"httpRandomizeMediaName":false},"drmConfig":{"serverName":"_defaultServer_","licenseType":"Developer","inUse":false,"cupertinoEncryptionAPIBased":false,"ezDRMUsername":"","ezDRMPassword":"","buyDRMUserKey":"","buyDRMProtectSmoothStreaming":false,"buyDRMProtectCupertinoStreaming":false,"buyDRMProtectMpegDashStreaming":false,"verimatrixProtectCupertinoStreaming":false,"verimatrixCupertinoKeyServerIpAddress":"","verimatrixCupertinoKeyServerPort":0,"verimatrixCupertinoVODPerSessionKeys":false,"verimatrixProtectSmoothStreaming":false,"verimatrixSmoothKeyServerIpAddress":"","verimatrixSmoothKeyServerPort":0},"transcoderConfig":{"serverName":"_defaultServer_","available":true,"licensed":true,"licenses":1,"licensesInUse":0,"templates":{"vhostName":"_defaultVHost_","templates":[{"id":"audioonly","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app/transcoder/templates/audioonly"},{"id":"transrate","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app/transcoder/templates/transrate"},{"id":"transcode-h265-divx","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app/transcoder/templates/transcode-h265-divx"},{"id":"transcode","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app/transcoder/templates/transcode"}]},"templatesInUse":"${SourceStreamName}.xml,transrate.xml","profileDir":"${com.wowza.wms.context.VHostConfigHome}/transcoder/profiles","templateDir":"${com.wowza.wms.context.VHostConfigHome}/transcoder/templates","createTemplateDir":false},"modules":{"serverName":"_defaultServer_","moduleList":[{"order":0,"name":"base","description":"Base","class":"com.wowza.wms.module.ModuleCore"},{"order":1,"name":"logging","description":"Client
+        Logging","class":"com.wowza.wms.module.ModuleClientLogging"},{"order":2,"name":"flvplayback","description":"FLVPlayback","class":"com.wowza.wms.module.ModuleFLVPlayback"},{"order":3,"name":"ModuleCoreSecurity","description":"Core
+        Security Module for Applications","class":"com.wowza.wms.security.ModuleCoreSecurity"}]}}'
+    http_version: 
+  recorded_at: Mon, 10 Jul 2017 21:37:59 GMT
+recorded_with: VCR 3.0.3
