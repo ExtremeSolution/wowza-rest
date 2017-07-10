@@ -106,5 +106,14 @@ RSpec.describe WowzaRest::Client do
         expect(response).to be_nil
       end
     end
+
+    context 'when client executes this request' do
+      it 'has the same old base uri in the connection object',
+         vcr: { cassette_name: 'server_up_status' } do
+        client.server_status
+        expect(client.connection.class.base_uri)
+          .to eq(HTTParty.normalize_base_uri(client.base_uri))
+      end
+    end
   end
 end

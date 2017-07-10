@@ -20,12 +20,9 @@ module WowzaRest
     end
 
     def server_status
-      connection.class.base_uri server_path.to_s
-      begin
-        connection.request(:get, '/status').parsed_response
-      rescue
-        nil
-      end
+      connection.request(:get, '/status', base_uri: server_path).parsed_response
+    rescue
+      nil
     end
 
     def server_name
