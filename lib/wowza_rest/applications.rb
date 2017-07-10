@@ -8,6 +8,7 @@ module WowzaRest
       response = connection.request(:get, "/applications/#{app_name}")
       response.response.code == '200' ? response.parsed_response : nil
     end
+    alias application get_application
 
     def create_application(app_body, use_default_config = true)
       unless app_body.include?(:name) && app_body.include?(:appType)
