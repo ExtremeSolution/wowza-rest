@@ -1,6 +1,6 @@
 # WowzaRest
 
-[![Build Status](https://travis-ci.org/hazemtaha/wowza-rest.svg?branch=master)](https://travis-ci.org/hazemtaha/wowza-rest)
+[![Build Status](https://travis-ci.org/ExtremeSolution/wowza-rest.svg?branch=master)](https://travis-ci.org/ExtremeSolution/wowza-rest)
 [![Code Climate](https://codeclimate.com/github/hazemtaha/wowza_rest/badges/gpa.svg)](https://codeclimate.com/github/hazemtaha/wowza_rest)
 [![Gem Version](https://badge.fury.io/rb/wowza_rest.svg)](https://badge.fury.io/rb/wowza_rest)
 
