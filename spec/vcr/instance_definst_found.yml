@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances/instance_name
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances/_definst_
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Restlet-Framework/2.2.2
       Www-Authenticate:
-      - Digest realm="Wowza", domain="/", nonce="MTUwMDIyNjYxMDkxOTpkZDY4ZmUwOGY0NjhmOWE3NjNhZTk0YWEwOTQ1YWVjZA==",
+      - Digest realm="Wowza", domain="/", nonce="MTUwMDIyNjYxMDg3Mjo2ZGZmOTBkYTM3MWI0Y2Q5MTc2NDE2ZWFlY2UxZDFjZg==",
         algorithm=MD5, qop="auth"
       Access-Control-Expose-Headers:
       - Date,Server,Content-Type,Content-Length,WWW-Authenticate
@@ -48,7 +48,7 @@ http_interactions:
   recorded_at: Sun, 16 Jul 2017 17:36:50 GMT
 - request:
     method: get
-    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances/instance_name
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances/_definst_
     body:
       encoding: US-ASCII
       string: ''
@@ -60,13 +60,13 @@ http_interactions:
       Authorization:
       - Digest username="hazemt"
       - algorithm="MD5"
-      - cnonce="300900d23050031808c98be3da627721"
+      - cnonce="be159a24f24e24081cb960e19e837442"
       - nc=00000001
-      - nonce="MTUwMDIyNjYxMDkxOTpkZDY4ZmUwOGY0NjhmOWE3NjNhZTk0YWEwOTQ1YWVjZA=="
+      - nonce="MTUwMDIyNjYxMDg3Mjo2ZGZmOTBkYTM3MWI0Y2Q5MTc2NDE2ZWFlY2UxZDFjZg=="
       - qop="auth"
       - realm="Wowza"
-      - response="9fdeea3508e7528056aa85011a741ad3"
-      - uri="/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances/instance_name"
+      - response="19b09d05da8f5f74aabae1780bfb94c2"
+      - uri="/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/app_name/instances/_definst_"
   response:
     status:
       code: 200
@@ -96,7 +96,7 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"serverName":"_defaultServer_","incomingStreams":[],"outgoingStreams":[],"recorders":[],"streamGroups":[],"name":"instance_name"}'
+      string: '{"serverName":"_defaultServer_","incomingStreams":[{"sourceIp":"wowz://192.168.3.185:39369","isPTZEnabled":false,"applicationInstance":"_definst_","name":"myStream","isRecordingSet":false,"isStreamManagerStream":false,"isPublishedToVOD":false,"isConnected":true,"ptzPollingInterval":2000,"ptzPollingIntervalMinimum":1000}],"outgoingStreams":[],"recorders":[],"streamGroups":[],"name":"_definst_"}'
     http_version: 
   recorded_at: Sun, 16 Jul 2017 17:36:50 GMT
 recorded_with: VCR 3.0.3

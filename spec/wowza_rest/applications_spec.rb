@@ -13,23 +13,48 @@ RSpec.describe WowzaRest::Applications do
   end
 
   describe '#applications' do
-    it 'fetches all applications', vcr: { cassette_name: 'all_applications' } do
-      applications = client.applications
-      expect(applications['applications']).not_to be_nil
+    context 'when successfully fetch all applications' do
+      subject(:applications) { client.applications }
+
+      it 'returns an array',
+         vcr: { cassette_name: 'all_applications' } do
+        expect(applications).to be_an(Array)
+      end
+
+      it 'has WowzaRest::Data::Application elements',
+         vcr: { cassette_name: 'all_applications' } do
+        expect(applications.first)
+          .to be_instance_of WowzaRest::Data::ApplicationShort
+      end
+    end
+
+    context 'when fails to fetch the applications' do
+      before do
+        stub_request(:get, "#{client.base_uri}/applications")
+          .to_return(status: 401,
+                     body: { 'success' => false, 'code' => '401' }.to_json,
+                     headers: { 'Content-Type' => 'application/json' })
+      end
+
+      it 'returns nil' do
+        response = client.applications
+        expect(response).to be_nil
+      end
     end
   end
 
   describe '#get_application' do
     context 'when application is existed' do
-      before do
-        stub_request(:get, "#{client.base_uri}/applications/my_app")
-          .to_return(status: 200, body: { name: 'my_app' }.to_json,
-                     headers: { 'Content-Type' => 'application/json' })
+      subject(:application) { client.get_application('my_app') }
+
+      it 'returns WowzaRest::Data::Application instance',
+         vcr: { cassette_name: 'application_found' } do
+        expect(application).to be_instance_of WowzaRest::Data::Application
       end
 
-      it 'returns the application object' do
-        application = client.get_application('my_app')
-        expect(application['name']).to eq('my_app')
+      it 'has the same name requested',
+         vcr: { cassette_name: 'application_found' } do
+        expect(application.name).to eq('my_app')
       end
     end
 
