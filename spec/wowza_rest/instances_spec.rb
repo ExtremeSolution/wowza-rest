@@ -11,9 +11,14 @@ RSpec.describe WowzaRest::Instances do
   describe '#instances' do
     context 'when the application exists',
             vcr: { cassette_name: 'all_instances' } do
-      it 'returns a list of available instances' do
-        instances = client.instances('app_name')
-        expect(instances).not_to be_nil
+      subject(:instances) { client.instances('app_name') }
+      it 'returns an array' do
+        expect(instances).to be_an(Array)
+      end
+
+      it 'returns and array of WowzaRest::Data::Instance' do
+        expect(instances.first)
+          .to be_instance_of WowzaRest::Data::Instance
       end
     end
 
@@ -36,34 +41,18 @@ RSpec.describe WowzaRest::Instances do
 
   describe '#get_instance' do
     context 'when not providing an instance name' do
-      before do
-        stub_request(
-          :get,
-          "#{client.base_uri}/applications/app_name/instances/_definst_"
-        )
-      end
-
-      it 'uses _definst_ as a default instance name' do
-        client.get_instance('app_name')
-        expect(WebMock)
-          .to have_requested(
-            :get, "#{client.base_uri}/applications/app_name/instances/_definst_"
-          ).once
+      it 'returns _definst_ instance',
+         vcr: { cassette_name: 'instance_definst_found' } do
+        response = client.get_instance('app_name')
+        expect(response.name).to eq('_definst_')
       end
     end
 
     context 'when providing an instance name' do
-      let(:endpoint) do
-        "#{client.base_uri}/applications/app_name/instances/instance_name"
-      end
-
-      before do
-        stub_request(:get, endpoint)
-      end
-
-      it 'requests the given instance name' do
-        client.get_instance('app_name', 'instance_name')
-        expect(WebMock).to have_requested(:get, endpoint).once
+      it 'returns an instance with given instance name',
+         vcr: { cassette_name: 'instance_found' } do
+        response = client.get_instance('app_name', 'instance_name')
+        expect(response.name).to eq('instance_name')
       end
     end
 
@@ -76,12 +65,20 @@ RSpec.describe WowzaRest::Instances do
     end
 
     context 'when a successfull request is made' do
-      it 'returns the requested instance hash',
-         vcr: { cassette_name: 'instance_found' } do
-        response = client.get_instance(
+      subject(:instance) do
+        client.get_instance(
           'app_name', 'instance_name'
         )
-        expect(response['name']).to eq('instance_name')
+      end
+
+      it 'returns WowzaRest::Data::Instance instance',
+         vcr: { cassette_name: 'instance_found' } do
+        expect(instance).to be_instance_of WowzaRest::Data::Instance
+      end
+
+      it 'returns the requested instance hash',
+         vcr: { cassette_name: 'instance_found' } do
+        expect(instance.name).to eq('instance_name')
       end
     end
   end
@@ -92,13 +89,16 @@ RSpec.describe WowzaRest::Instances do
     end
 
     context 'when not providing an instance_name' do
-      before do
-        stub_request(:get, endpoint)
-      end
+      # before do
+      #   stub_request(:get, endpoint)
+      # end
 
-      it 'uses _definst_ as a default instance name' do
-        client.get_incoming_stream_stats('app_name', 'stream_name')
-        expect(WebMock).to have_requested(:get, endpoint).once
+      it 'fetches stream stats for _definst_ instance',
+         vcr: { cassette_name: 'incoming_streams_stat_definst_found' } do
+        response = client.get_incoming_stream_stats(
+          'app_name', 'stream_name'
+        )
+        expect(response.application_instance).to eq('_definst_')
       end
     end
 
@@ -113,12 +113,12 @@ RSpec.describe WowzaRest::Instances do
     end
 
     context 'when it successfull fetches the stats' do
-      it 'returns a stats hash',
+      it 'returns an IncomingStreamStatsa stats instance',
          vcr: { cassette_name: 'incoming_streams_stat_found' } do
         response = client.get_incoming_stream_stats(
           'app_name', 'stream_name'
         )
-        expect(response).not_to be_nil
+        expect(response).to be_instance_of WowzaRest::Data::IncomingStreamStats
       end
     end
   end
