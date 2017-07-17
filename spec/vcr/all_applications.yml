@@ -19,13 +19,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 29 Jun 2017 21:35:42 GMT
+      - Thu, 13 Jul 2017 17:12:00 GMT
       Accept-Ranges:
       - bytes
       Server:
       - Restlet-Framework/2.2.2
       Www-Authenticate:
-      - Digest realm="Wowza", domain="/", nonce="MTQ5ODc3MjE0MjMxNjoyMWNiMDhmYmY1NmZiMmJiZTAxYTJmOTg2ZDZlMmZkYg==",
+      - Digest realm="Wowza", domain="/", nonce="MTQ5OTk2NTkyMDYwOTozZjk1ZTczMzk3ZTFiNzVmNTY4YzdjNThhYmJiZjEwMw==",
         algorithm=MD5, qop="auth"
       Access-Control-Expose-Headers:
       - Date,Server,Content-Type,Content-Length,WWW-Authenticate
@@ -43,9 +43,9 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"message":"The request requires user authentication","wowzaServer":"4.7.0","success":false,"code":"401"}'
+      string: '{"message":"The request requires user authentication","success":false,"code":"401","wowzaServer":"4.7.0"}'
     http_version: 
-  recorded_at: Thu, 29 Jun 2017 21:35:42 GMT
+  recorded_at: Thu, 13 Jul 2017 17:12:00 GMT
 - request:
     method: get
     uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications
@@ -60,12 +60,12 @@ http_interactions:
       Authorization:
       - Digest username="hazemt"
       - algorithm="MD5"
-      - cnonce="983372af3fe303dac42cb530a976cd05"
+      - cnonce="1d1830c54e5c7e27106852cf8ff789db"
       - nc=00000001
-      - nonce="MTQ5ODc3MjE0MjMxNjoyMWNiMDhmYmY1NmZiMmJiZTAxYTJmOTg2ZDZlMmZkYg=="
+      - nonce="MTQ5OTk2NTkyMDYwOTozZjk1ZTczMzk3ZTFiNzVmNTY4YzdjNThhYmJiZjEwMw=="
       - qop="auth"
       - realm="Wowza"
-      - response="d6ecd2b191873c44b9ff93b725e397da"
+      - response="6df75ec122740cb7cb33d4af2dafb124"
       - uri="/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications"
   response:
     status:
@@ -75,7 +75,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 29 Jun 2017 21:35:42 GMT
+      - Thu, 13 Jul 2017 17:12:01 GMT
       Accept-Ranges:
       - bytes
       Server:
@@ -96,7 +96,7 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"serverName":"_defaultServer_","applications":[]}'
+      string: '{"serverName":"_defaultServer_","applications":[{"id":"SMyApp","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/SMyApp","appType":null,"dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"dasdeqweq","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/dasdeqweq","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"heldlasdasd","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/heldlasdasd","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"heldlasdasddasdas","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/heldlasdasddasdas","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"helloworldapp","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/helloworldapp","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"myAppName","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/myAppName","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"my_app","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"my_new_app","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_new_app","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"my_new_apppp","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_new_apppp","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":false},{"id":"wowza","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/wowza","appType":"Live","dvrEnabled":false,"drmEnabled":false,"transcoderEnabled":false,"streamTargetsEnabled":true}]}'
     http_version: 
-  recorded_at: Thu, 29 Jun 2017 21:35:42 GMT
+  recorded_at: Thu, 13 Jul 2017 17:12:01 GMT
 recorded_with: VCR 3.0.3

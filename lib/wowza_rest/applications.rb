@@ -1,12 +1,19 @@
+require_relative 'data/application'
+require_relative 'data/application_short'
+
 module WowzaRest
   module Applications
     def applications
-      connection.request(:get, '/applications').parsed_response
+      response = connection.request(:get, '/applications')
+      return unless response.code == 200
+      response.parsed_response['applications']
+              .map { |e| WowzaRest::Data::ApplicationShort.new(e) }
     end
 
     def get_application(app_name)
       response = connection.request(:get, "/applications/#{app_name}")
-      response.response.code == '200' ? response.parsed_response : nil
+      return unless response.code == 200
+      WowzaRest::Data::Application.new(response.parsed_response)
     end
     alias application get_application
 

@@ -36,14 +36,6 @@ RSpec.describe WowzaRest::Client do
     end
   end
 
-  context 'when it has an invalid username/password' do
-    it 'responds with 401',
-       vcr: { cassette_name: 'all_applications_unauthrized' } do
-      response = wrong_client.applications
-      expect(response['code']).to eq('401')
-    end
-  end
-
   context 'when creating a new object' do
     context 'when host is missing' do
       it 'raises MissingRequiredKeys error' do
