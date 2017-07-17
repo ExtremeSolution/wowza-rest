@@ -12,6 +12,7 @@ RSpec.describe WowzaRest::Instances do
     context 'when the application exists',
             vcr: { cassette_name: 'all_instances' } do
       subject(:instances) { client.instances('app_name') }
+
       it 'returns an array' do
         expect(instances).to be_an(Array)
       end

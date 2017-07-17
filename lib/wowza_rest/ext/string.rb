@@ -9,8 +9,8 @@ class String
 
   def camelize
     tr('-', '_')
-      .gsub(/\b[A-Z]+/) { |w| w.downcase }
-      .gsub(/_(.)/) { |w| w.upcase }
+      .gsub(/\b[A-Z]+/, &:downcase)
+      .gsub(/_(.)/, &:upcase)
       .tr('_', '')
   end
 end

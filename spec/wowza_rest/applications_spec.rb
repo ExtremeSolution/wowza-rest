@@ -23,7 +23,8 @@ RSpec.describe WowzaRest::Applications do
 
       it 'has WowzaRest::Data::Application elements',
          vcr: { cassette_name: 'all_applications' } do
-        expect(applications.first).to be_instance_of WowzaRest::Data::ApplicationShort
+        expect(applications.first)
+          .to be_instance_of WowzaRest::Data::ApplicationShort
       end
     end
 
