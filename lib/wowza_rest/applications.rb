@@ -45,19 +45,22 @@ module WowzaRest
     private
 
     # rubocop:disable Metrics/LineLength
+    # rubocop:disable Metrics/MethodLength
     def apply_update_application_checks(app_name, config)
       if !app_name.is_a?(String)
         raise WowzaRest::Errors::InvalidArgumentType,
               "First argument expected to be String got #{app_name.class} instead"
-      elsif !config.is_a?(Hash)
+      elsif !config.is_a?(Hash) && !config.is_a?(WowzaRest::Data::Application)
         raise WowzaRest::Errors::InvalidArgumentType,
-              "Second argument expected to be String got #{config.class} instead"
-      elsif config.empty?
+              "Second argument expected to be Hash or WowzaRest::Data::Application instance,
+              got #{config.class} instead"
+      elsif config.is_a?(Hash) && config.empty?
         raise WowzaRest::Errors::InvalidArgument,
-              'Configuration hash must have at least one attribute'
+              'When Configuration passeed as hash it must contains at least one attribute'
       end
     end
     # rubocop:enable Metrics/LineLength
+    # rubocop:enable Metrics/MethodLength
 
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/LineLength

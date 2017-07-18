@@ -7,7 +7,7 @@ module WowzaRest
                   :drm_config, :transcoder_config, :modules
 
       def initialize(attrs = {})
-        initialize_object_attrs(attrs)
+        initialize_object_attrs(attrs || {})
         super(attrs)
       end
 
@@ -32,9 +32,11 @@ module WowzaRest
       class TranscoderConfig < Base
         attr_reader :templates
         def initialize(attrs = {})
-          @templates = wrap_array_objects(
-            attrs.delete('templates')['templates'], Template
-          )
+          if !attrs.nil? &&  attrs['templates']
+            @templates = wrap_array_objects(
+              attrs.delete('templates')['templates'], Template
+            )
+          end
           super(attrs)
         end
 
@@ -55,16 +57,19 @@ module WowzaRest
 
       private
 
+      # rubocop:disable Metrics/MethodLength
       def initialize_object_attrs(attrs)
+        if attrs['modules']
+          @modules = wrap_array_objects(
+            attrs.delete('modules')['moduleList'], Module
+          )
+        end
         @security_config = SecurityConfig.new(attrs.delete('securityConfig'))
         @stream_config = StreamConfig.new(attrs.delete('streamConfig'))
         @dvr_config = DVRConfig.new(attrs.delete('dvrConfig'))
         @drm_config = DRMConfig.new(attrs.delete('drmConfig'))
         @transcoder_config = TranscoderConfig.new(
           attrs.delete('transcoderConfig')
-        )
-        @modules = wrap_array_objects(
-          attrs.delete('modules')['moduleList'], Module
         )
       end
     end

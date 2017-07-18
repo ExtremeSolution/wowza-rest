@@ -13,3 +13,6 @@ Documentation:
 
 RSpec/NestedGroups:
   Max: 5
+
+Metrics/AbcSize:
+  Max: 18

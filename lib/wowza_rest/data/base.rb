@@ -2,7 +2,7 @@ module WowzaRest
   module Data
     class Base
       def initialize(attrs = {})
-        setup_attributes(attrs)
+        setup_attributes(attrs || {})
       end
 
       def setup_attributes(attrs)
@@ -26,31 +26,44 @@ module WowzaRest
       end
 
       def wrap_array_objects(arr, klass)
-        arr.map { |obj| klass.new(obj) }
+        arr.map { |obj| klass.new(obj) } unless arr.nil?
       end
 
       def hashize_array_objects(arr)
+        return unless arr.nil?
         arr.map do |obj|
           obj.is_a?(WowzaRest::Data::Base) ? obj.to_h : obj
         end
       end
 
+      # rubocop:disable Metrics/MethodLength
       def to_h
         instance_variables.each_with_object({}) do |var, hash|
-          if instance_variable_get(var).is_a?(WowzaRest::Data::Base)
-            hash[var.to_s.delete('@').camelize.to_sym] = instance_variable_get(var).to_h
-          elsif instance_variable_get(var).is_a?(Array)
-            if block_given?
-              hash[var.to_s.delete('@').camelize.to_sym] = yield(var, instance_variable_get(var))
+          value = instance_variable_get(var)
+          hash[var.to_s.delete('@').camelize.to_sym] =
+            if value.is_a?(WowzaRest::Data::Base)
+              instance_variable_get(var).to_h
+            elsif value.is_a?(Array)
+              if block_given?
+                yield(var, instance_variable_get(var))
+              else
+                hashize_array_objects(instance_variable_get(var))
+              end
             else
-              hash[var.to_s.delete('@').camelize.to_sym] = hashize_array_objects(instance_variable_get(var))
+              instance_variable_get(var)
             end
-          else
-            hash[var.to_s.delete('@').camelize.to_sym] = instance_variable_get(var)
-          end
         end
       end
+      # rubocop:enable Metrics/MethodLength
       alias to_hash to_h
+
+      def to_json
+        to_h.to_json
+      end
+
+      def include?(attr_name)
+        to_h.include?(attr_name)
+      end
     end
   end
 end
