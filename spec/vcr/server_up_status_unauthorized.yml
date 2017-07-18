@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/status
     body:
       encoding: US-ASCII
       string: ''
@@ -19,13 +19,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 01 Jul 2017 10:21:01 GMT
+      - Tue, 18 Jul 2017 13:29:28 GMT
       Accept-Ranges:
       - bytes
       Server:
       - Restlet-Framework/2.2.2
       Www-Authenticate:
-      - Digest realm="Wowza", domain="/", nonce="MTQ5ODkwNDQ2MTE2Nzo5ZjA3ZWYyYTQ1MWRkZDJhYWQ0MzYxMmQ2ZjU0YjM4ZA==",
+      - Digest realm="Wowza", domain="/", nonce="MTUwMDM4NDU2ODcyODplMDE5MjlkY2IwZTBjNTNhOGMwMzY0OWI1NjQ0NjYxMg==",
         algorithm=MD5, qop="auth"
       Access-Control-Expose-Headers:
       - Date,Server,Content-Type,Content-Length,WWW-Authenticate
@@ -43,12 +43,12 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"message":"The request requires user authentication","success":false,"wowzaServer":"4.7.0","code":"401"}'
+      string: '{"message":"The request requires user authentication","wowzaServer":"4.7.0","code":"401","success":false}'
     http_version: 
-  recorded_at: Sat, 01 Jul 2017 10:21:01 GMT
+  recorded_at: Tue, 18 Jul 2017 13:29:28 GMT
 - request:
     method: get
-    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/status
     body:
       encoding: US-ASCII
       string: ''
@@ -60,13 +60,13 @@ http_interactions:
       Authorization:
       - Digest username="username"
       - algorithm="MD5"
-      - cnonce="8edf84fba05cf6a5e8faf68eebd293c8"
+      - cnonce="867f5a938135114f760db45493960841"
       - nc=00000001
-      - nonce="MTQ5ODkwNDQ2MTE2Nzo5ZjA3ZWYyYTQ1MWRkZDJhYWQ0MzYxMmQ2ZjU0YjM4ZA=="
+      - nonce="MTUwMDM4NDU2ODcyODplMDE5MjlkY2IwZTBjNTNhOGMwMzY0OWI1NjQ0NjYxMg=="
       - qop="auth"
       - realm="Wowza"
-      - response="c1d35716a11bb5d822eb0a669b0d891a"
-      - uri="/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications"
+      - response="2f2f6dd2a7a66807f0a0848abad67504"
+      - uri="/v2/servers/_defaultServer_/status"
   response:
     status:
       code: 401
@@ -75,13 +75,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 01 Jul 2017 10:21:01 GMT
+      - Tue, 18 Jul 2017 13:29:28 GMT
       Accept-Ranges:
       - bytes
       Server:
       - Restlet-Framework/2.2.2
       Www-Authenticate:
-      - Digest realm="Wowza", domain="/", nonce="MTQ5ODkwNDQ2MTE3Mjo3ZDJmMThmMTQ4MTI2OTVhYjdlYTE4OWNiNGYzMTdmYg==",
+      - Digest realm="Wowza", domain="/", nonce="MTUwMDM4NDU2ODczNDpjMzIwNTNjZjllMWRkNTAzODA2YjgwZjlhZWUwZTNkYw==",
         algorithm=MD5, qop="auth"
       Access-Control-Expose-Headers:
       - Date,Server,Content-Type,Content-Length,WWW-Authenticate
@@ -99,7 +99,7 @@ http_interactions:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"message":"The request requires user authentication","success":false,"wowzaServer":"4.7.0","code":"401"}'
+      string: '{"message":"The request requires user authentication","wowzaServer":"4.7.0","code":"401","success":false}'
     http_version: 
-  recorded_at: Sat, 01 Jul 2017 10:21:01 GMT
+  recorded_at: Tue, 18 Jul 2017 13:29:28 GMT
 recorded_with: VCR 3.0.3
