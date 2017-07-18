@@ -79,11 +79,19 @@ RSpec.describe WowzaRest::Client do
   end
 
   describe '#server_status' do
-    context 'when server is up',
-            vcr: { cassette_name: 'server_up_status' } do
-      it 'returns server status hash' do
+    context 'when server is up' do
+      it 'returns WowzaRest::Data::ServerStatus instance',
+         vcr: { cassette_name: 'server_up_status' } do
         response = client.server_status
-        expect(response).not_to be_nil
+        expect(response).to be_an_instance_of(WowzaRest::Data::ServerStatus)
+      end
+
+      context 'when using wrong creds',
+              vcr: { cassette_name: 'server_up_status_unauthorized' } do
+        it 'returns WowzaRest::Data::ServerStatus with code 401' do
+          response = wrong_client.server_status
+          expect(response.code).to eq('401')
+        end
       end
     end
 

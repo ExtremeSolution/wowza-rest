@@ -132,6 +132,21 @@ RSpec.describe WowzaRest::Applications do
       end
     end
 
+    context 'when app_body is a WowzaRest::Data::Application instance' do
+      subject(:response) do
+        client.create_application(
+          WowzaRest::Data::Application.new(
+            'appType' => 'apptype', 'name' => 'app_name'
+          )
+        )
+      end
+
+      it 'responds with success response',
+         vcr: { cassette_name: 'application_create_successful' } do
+        expect(response['success']).to be true
+      end
+    end
+
     context 'when application id is already exist' do
       it 'responds with failure response',
          vcr: { cassette_name: 'application_create_exists' } do
@@ -169,7 +184,7 @@ RSpec.describe WowzaRest::Applications do
       end
     end
 
-    context 'when fields is not a hash' do
+    context 'when fields not a hash or WowzaRest::Data::Application instance' do
       it 'raises InvalidArgumentType error' do
         expect do
           client.update_application('app_name', 'invalid_value')
@@ -186,6 +201,20 @@ RSpec.describe WowzaRest::Applications do
       end
     end
 
+    context 'when second argument is WowzaRest::Data::Application instance' do
+      subject(:response) do
+        client.update_application(
+          'app_name',
+          WowzaRest::Data::Application.new('appType' => 'VOD')
+        )
+      end
+
+      it 'returns true',
+         vcr: { cassette_name: 'application_updated' } do
+        expect(response).to be true
+      end
+    end
+
     context 'when application not exist' do
       it 'returns false',
          vcr: { cassette_name: 'application_update_not_exist' } do
@@ -194,7 +223,7 @@ RSpec.describe WowzaRest::Applications do
       end
     end
 
-    context 'when fields hash is empty' do
+    context 'when fields passed as hash and its empty' do
       it 'raises InvalidArgument error' do
         expect do
           client.update_application('not_existed_app', {})

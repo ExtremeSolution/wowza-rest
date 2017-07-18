@@ -8,16 +8,16 @@ module WowzaRest
 
       # rubocop:disable Metrics/MethodLength
       def initialize(attrs = {})
-        @incoming_streams = map_array_objects(
+        @incoming_streams = wrap_array_objects(
           attrs.delete('incomingStreams'), IncomingStream
         )
-        @outgoing_streams = map_array_objects(
+        @outgoing_streams = wrap_array_objects(
           attrs.delete('outgoingStreams'), OutgoingStream
         )
-        @recorders = map_array_objects(
+        @recorders = wrap_array_objects(
           attrs.delete('recorders'), Recorder
         )
-        @stream_groups = map_array_objects(
+        @stream_groups = wrap_array_objects(
           attrs.delete('streamGroups'), StreamGroup
         )
         super(attrs)

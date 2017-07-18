@@ -1,6 +1,7 @@
 require 'wowza_rest/api'
 require 'wowza_rest/connection'
 require 'wowza_rest/errors'
+require_relative 'data/server_status'
 
 module WowzaRest
   class Client
@@ -20,7 +21,8 @@ module WowzaRest
     end
 
     def server_status
-      connection.request(:get, '/status', base_uri: server_path).parsed_response
+      response = connection.request(:get, '/status', base_uri: server_path)
+      WowzaRest::Data::ServerStatus.new(response.parsed_response)
     rescue
       nil
     end
