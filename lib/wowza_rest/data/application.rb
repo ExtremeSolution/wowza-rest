@@ -11,16 +11,16 @@ module WowzaRest
         super(attrs)
       end
 
-      class TranscoderConfig < Base
-        attr_reader :templates
-        def initialize(attrs = {})
-          @templates = map_array_objects(
-            attrs.delete('templates')['templates'], Template
-          )
-          super(attrs)
+      def to_h
+        super() do |k, arr|
+          if k == :@modules
+            {
+              moduleList: hashize_array_objects(arr)
+            }
+          else
+            hashize_array_objects(arr)
+          end
         end
-
-        class Template < Base; end
       end
 
       class SecurityConfig < Base; end
@@ -28,6 +28,30 @@ module WowzaRest
       class DVRConfig < Base; end
       class DRMConfig < Base; end
       class Module < Base; end
+
+      class TranscoderConfig < Base
+        attr_reader :templates
+        def initialize(attrs = {})
+          @templates = wrap_array_objects(
+            attrs.delete('templates')['templates'], Template
+          )
+          super(attrs)
+        end
+
+        def to_h
+          super() do |k, arr|
+            if k == :@templates
+              {
+                templates: hashize_array_objects(arr)
+              }
+            else
+              hashize_array_objects(arr)
+            end
+          end
+        end
+
+        class Template < Base; end
+      end
 
       private
 
@@ -39,7 +63,7 @@ module WowzaRest
         @transcoder_config = TranscoderConfig.new(
           attrs.delete('transcoderConfig')
         )
-        @modules = map_array_objects(
+        @modules = wrap_array_objects(
           attrs.delete('modules')['moduleList'], Module
         )
       end
