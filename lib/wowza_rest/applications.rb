@@ -1,5 +1,6 @@
 require_relative 'data/application'
 require_relative 'data/application_short'
+require_relative 'data/application_stats'
 
 module WowzaRest
   module Applications
