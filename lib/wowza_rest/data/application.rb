@@ -7,6 +7,8 @@ module WowzaRest
                   :drm_config, :transcoder_config, :modules
 
       def initialize(attrs = {})
+        keys_reader :securityConfig, :streamConfig, :dvrConfig,
+                    :drmConfig, :transcoderConfig, :modules
         initialize_object_attrs(attrs || {})
         super(attrs)
       end
@@ -15,10 +17,10 @@ module WowzaRest
         super() do |k, arr|
           if k == :@modules
             {
-              moduleList: hashize_array_objects(arr)
+              moduleList: objects_array_to_hash_array(arr)
             }
           else
-            hashize_array_objects(arr)
+            objects_array_to_hash_array(arr)
           end
         end
       end
@@ -31,8 +33,10 @@ module WowzaRest
 
       class TranscoderConfig < Base
         attr_reader :templates
+
         def initialize(attrs = {})
           if !attrs.nil? &&  attrs['templates']
+            keys_reader :templates
             @templates = wrap_array_objects(
               attrs.delete('templates')['templates'], Template
             )
@@ -44,10 +48,10 @@ module WowzaRest
           super() do |k, arr|
             if k == :@templates
               {
-                templates: hashize_array_objects(arr)
+                templates: objects_array_to_hash_array(arr)
               }
             else
-              hashize_array_objects(arr)
+              objects_array_to_hash_array(arr)
             end
           end
         end

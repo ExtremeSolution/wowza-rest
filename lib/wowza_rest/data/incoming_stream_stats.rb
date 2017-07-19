@@ -6,6 +6,7 @@ module WowzaRest
       attr_reader :connection_count
 
       def initialize(attrs = {})
+        keys_reader :connectionCount
         @connection_count = ConnectionCount.new(attrs.delete('connectionCount'))
         super(attrs)
       end

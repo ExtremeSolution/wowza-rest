@@ -7,9 +7,10 @@ module WowzaRest
 
       def setup_attributes(attrs)
         attrs.each do |k, v|
-          define_attribute_getter(k.underscore)
-          define_attribute_setter(k.underscore)
-          instance_variable_set("@#{k.underscore}", v)
+          define_attribute_getter(k.to_s.underscore)
+          define_attribute_setter(k.to_s.underscore)
+          define_key_getter(k.to_s)
+          instance_variable_set("@#{k.to_s.underscore}", v)
         end
       end
 
@@ -25,12 +26,24 @@ module WowzaRest
         end
       end
 
+      def define_key_getter(key)
+        define_singleton_method("#{key.underscore}_key") do
+          key.to_s
+        end
+      end
+
+      def keys_reader(*args)
+        args.each do |arg|
+          define_key_getter(arg.to_s)
+        end
+      end
+
       def wrap_array_objects(arr, klass)
         arr.map { |obj| klass.new(obj) } unless arr.nil?
       end
 
-      def hashize_array_objects(arr)
-        return unless arr.nil?
+      def objects_array_to_hash_array(arr)
+        return if arr.nil?
         arr.map do |obj|
           obj.is_a?(WowzaRest::Data::Base) ? obj.to_h : obj
         end
@@ -40,14 +53,14 @@ module WowzaRest
       def to_h
         instance_variables.each_with_object({}) do |var, hash|
           value = instance_variable_get(var)
-          hash[var.to_s.delete('@').camelize.to_sym] =
+          hash[send("#{var.to_s.delete('@')}_key")] =
             if value.is_a?(WowzaRest::Data::Base)
               instance_variable_get(var).to_h
             elsif value.is_a?(Array)
               if block_given?
                 yield(var, instance_variable_get(var))
               else
-                hashize_array_objects(instance_variable_get(var))
+                objects_array_to_hash_array(instance_variable_get(var))
               end
             else
               instance_variable_get(var)
@@ -62,7 +75,7 @@ module WowzaRest
       end
 
       def include?(attr_name)
-        to_h.include?(attr_name)
+        to_h.include?(attr_name.to_s)
       end
     end
   end

@@ -8,6 +8,8 @@ module WowzaRest
 
       # rubocop:disable Metrics/MethodLength
       def initialize(attrs = {})
+        keys_reader :incomingStreams, :outgoingStreams,
+                    :recorders, :streamGroups
         @incoming_streams = wrap_array_objects(
           attrs.delete('incomingStreams'), IncomingStream
         )
