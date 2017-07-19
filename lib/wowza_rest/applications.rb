@@ -42,6 +42,18 @@ module WowzaRest
       connection.request(:delete, "/applications/#{app_name}")['success']
     end
 
+    def get_application_stats(app_name)
+      unless app_name.is_a?(String)
+        raise WowzaRest::Errors::InvalidArgumentType,
+              "First argument expected to be String got #{app_name.class}"
+      end
+      response = connection.request(
+        :get, "/applications/#{app_name}/monitoring/current"
+      )
+      return unless response.code == 200
+      WowzaRest::Data::ApplicationStats.new(response.parsed_response)
+    end
+
     private
 
     # rubocop:disable Metrics/LineLength
