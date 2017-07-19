@@ -136,7 +136,7 @@ RSpec.describe WowzaRest::Applications do
       subject(:response) do
         client.create_application(
           WowzaRest::Data::Application.new(
-            'appType' => 'apptype', 'name' => 'app_name'
+            appType: 'apptype', name: 'app_name'
           )
         )
       end
@@ -205,7 +205,7 @@ RSpec.describe WowzaRest::Applications do
       subject(:response) do
         client.update_application(
           'app_name',
-          WowzaRest::Data::Application.new('appType' => 'VOD')
+          WowzaRest::Data::Application.new(appType: 'VOD')
         )
       end
 
