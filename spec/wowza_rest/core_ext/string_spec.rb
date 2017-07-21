@@ -21,6 +21,12 @@ RSpec.describe String do
           expect(word).to eq('camel')
         end
       end
+      context 'when it contains any dots' do
+        it 'converts them to underscores' do
+          word = 'With.Dots'.underscore
+          expect(word).to eq('with_dots')
+        end
+      end
       it 'returns snake_cased version' do
         word = 'camelCased'.underscore
         expect(word).to eq('camel_cased')
