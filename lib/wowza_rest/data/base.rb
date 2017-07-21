@@ -1,3 +1,4 @@
+require 'pry'
 module WowzaRest
   module Data
     class Base
@@ -7,22 +8,9 @@ module WowzaRest
 
       def setup_attributes(attrs)
         attrs.each do |k, v|
-          define_attribute_getter(k.to_s.underscore)
-          define_attribute_setter(k.to_s.underscore)
+          singleton_class.send(:attr_accessor, k.to_s.underscore)
           define_key_getter(k.to_s)
           instance_variable_set("@#{k.to_s.underscore}", v)
-        end
-      end
-
-      def define_attribute_getter(attr_name)
-        define_singleton_method(attr_name.to_s) do
-          instance_variable_get("@#{attr_name}")
-        end
-      end
-
-      def define_attribute_setter(attr_name)
-        define_singleton_method("#{attr_name}=") do |value|
-          instance_variable_set("@#{attr_name}", value)
         end
       end
 
