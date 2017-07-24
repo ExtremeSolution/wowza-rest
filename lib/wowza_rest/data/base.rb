@@ -1,4 +1,3 @@
-require 'pry'
 module WowzaRest
   module Data
     class Base
