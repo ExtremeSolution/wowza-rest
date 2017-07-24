@@ -270,6 +270,16 @@ RSpec.describe WowzaRest::Applications do
       end
     end
 
-    context 'when application'
+    context 'when application stats are successfully fetched' do
+      let(:response) do
+        @response = client.get_application_stats('my_app')
+      end
+
+      it 'has WowzaRest::Data::ApplicationStats elements',
+         vcr: { cassette_name: 'application_stats_success' } do
+        expect(response)
+          .to be_instance_of WowzaRest::Data::ApplicationStats
+      end
+    end
   end
 end
