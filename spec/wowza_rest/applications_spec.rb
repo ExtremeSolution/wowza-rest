@@ -259,4 +259,27 @@ RSpec.describe WowzaRest::Applications do
       end
     end
   end
+
+  describe '#get_application_stats' do
+    context 'when app_name is not a string' do
+      it 'raises InvalidArgumentType error' do
+        expect do
+          client.get_application_stats(123)
+        end
+          .to raise_error WowzaRest::Errors::InvalidArgumentType
+      end
+    end
+
+    context 'when application stats are successfully fetched' do
+      let(:response) do
+        @response = client.get_application_stats('my_app')
+      end
+
+      it 'has WowzaRest::Data::ApplicationStats elements',
+         vcr: { cassette_name: 'application_stats_success' } do
+        expect(response)
+          .to be_instance_of WowzaRest::Data::ApplicationStats
+      end
+    end
+  end
 end

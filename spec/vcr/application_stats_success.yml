@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/my_app/monitoring/current
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 24 Jul 2017 15:34:05 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"serverName":"_defaultServer_","uptime":0,"bytesIn":0,"bytesOut":0,"bytesInRate":0,"bytesOutRate":0,"totalConnections":0,"connectionCount":{"WEBM":0,"DVRCHUNKS":0,"RTMP":0,"MPEGDASH":0,"CUPERTINO":0,"SANJOSE":0,"SMOOTH":0,"RTP":0}}'
+    http_version: 
+  recorded_at: Mon, 24 Jul 2017 15:34:05 GMT
+recorded_with: VCR 3.0.3

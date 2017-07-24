@@ -1,5 +1,6 @@
 require_relative 'data/application'
 require_relative 'data/application_short'
+require_relative 'data/application_stats'
 
 module WowzaRest
   module Applications
@@ -40,6 +41,18 @@ module WowzaRest
               "First argument expected to be String got #{app_name.class}"
       end
       connection.request(:delete, "/applications/#{app_name}")['success']
+    end
+
+    def get_application_stats(app_name)
+      unless app_name.is_a?(String)
+        raise WowzaRest::Errors::InvalidArgumentType,
+              "First argument expected to be String got #{app_name.class}"
+      end
+      response = connection.request(
+        :get, "/applications/#{app_name}/monitoring/current"
+      )
+      return unless response.code == 200
+      WowzaRest::Data::ApplicationStats.new(response.parsed_response)
     end
 
     private
