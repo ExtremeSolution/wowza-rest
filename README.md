@@ -90,6 +90,27 @@ client.delete_publisher('PUBLISHER_NAME')
 ```ruby
 client.server_status
 ```
+### SMILs
+- List All SMILs
+```ruby
+smils = client.smils
+```
+- Fetch single application
+```ruby
+smil = client.get_smil('SMIL_NAME')
+```
+- Create SMIL 
+```ruby
+client.create_smil('SMIL_NAME', 'SMIL_BODY')
+```
+- Update SMIL 
+```ruby
+client.update_smil('SMIL_NAME', 'SMIL_BODY')
+```
+- Delete publisher
+```ruby
+client.delete_smil('SMIL_NAME')
+```
 
 ## Development
 
