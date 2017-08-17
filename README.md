@@ -107,7 +107,7 @@ client.create_smil('SMIL_NAME', 'SMIL_BODY')
 ```ruby
 client.update_smil('SMIL_NAME', 'SMIL_BODY')
 ```
-- Delete publisher
+- Delete SMIL
 ```ruby
 client.delete_smil('SMIL_NAME')
 ```
