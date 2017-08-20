@@ -101,11 +101,15 @@ smil = client.get_smil('SMIL_NAME')
 ```
 - Create SMIL
 ```ruby
-client.create_smil('SMIL_NAME', 'SMIL_BODY')
+client.create_smil('SMIL_NAME', {
+# ... smil body to be created
+})
 ```
 - Update SMIL
 ```ruby
-client.update_smil('SMIL_NAME', 'SMIL_BODY')
+client.update_smil('SMIL_NAME', {
+# ... smil body to be updated
+})
 ```
 - Delete SMIL
 ```ruby
