@@ -80,15 +80,17 @@ RSpec.describe WowzaRest::SMILs do
 
     context 'when smil do not exist' do
       before do
-        stub_request(:get, "#{client.base_uri}/smilFiles/unknown_smil")
+        stub_request(:get, "#{client.base_uri}/smilfiles/unknown_smil")
           .to_return(status: 404,
                      body: { 'success' => false, 'code' => '404' }.to_json,
                      headers: { 'Content-Type' => 'application/json' })
       end
 
       it 'returns nil if smil not found' do
-        smil = client.get_smil('unknown_smil')
-        expect(smil).to be_nil
+        vcr: { cassette_name: 'smil__not_found' } do          
+          smil = client.get_smil('unknown_smil')
+          expect(smil).to be_nil
+        end
       end
     end
   end
