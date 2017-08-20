@@ -1,10 +1,11 @@
 require 'spec_helper'
 
-RSpec.describe WowzaRest::Client do
+RSpec.describe WowzaRest::SMILs do
   let(:client) do
-    described_class.new(host: '127.0.0.1', port: '8087',
-                        username: ENV['WOWZA_USERNAME'],
-                        password: ENV['WOWZA_PASSWORD'])
+    WowzaRest::Client.new(host: '127.0.0.1',
+                          port: '8087',
+                          username: ENV['WOWZA_USERNAME'],
+                          password: ENV['WOWZA_PASSWORD'])
   end
 
   let(:smil_body) do
@@ -86,7 +87,7 @@ RSpec.describe WowzaRest::Client do
       end
 
       it 'returns nil if smil not found' do
-        smil = client.get_application('unknown_smil')
+        smil = client.get_smil('unknown_smil')
         expect(smil).to be_nil
       end
     end
@@ -107,7 +108,7 @@ RSpec.describe WowzaRest::Client do
       it 'responds with success response',
          vcr: { cassette_name: 'smil_create_successful' } do
         response = client.create_smil('new_smil', smil_body)
-        expect(response['success']).to be true
+        expect(response).to be true
       end
     end
 
@@ -118,7 +119,7 @@ RSpec.describe WowzaRest::Client do
 
       it 'responds with success response',
          vcr: { cassette_name: 'smil_create_successful' } do
-        expect(response['success']).to be true
+        expect(response).to be true
       end
     end
 
@@ -126,7 +127,7 @@ RSpec.describe WowzaRest::Client do
       it 'responds with failure response',
          vcr: { cassette_name: 'smil_create_exists' } do
         response = client.create_smil('new_smil', smil_body)
-        expect(response['success']).to be false
+        expect(response).to be false
       end
     end
   end
@@ -144,7 +145,7 @@ RSpec.describe WowzaRest::Client do
     context 'when fields not a hash or WowzaRest::Data::SMIL instance' do
       it 'raises InvalidArgumentType error' do
         expect do
-          client.update_application('smil_name', 'invalid_value')
+          client.update_smil('smil_name', 'invalid_value')
         end
           .to raise_error WowzaRest::Errors::InvalidArgumentType
       end
