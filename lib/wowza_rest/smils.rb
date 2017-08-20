@@ -23,7 +23,7 @@ module WowzaRest
                 raise WowzaRest::Errors::InvalidArgumentType,
                     "First argument expected to be String got #{smil_name.class}"
             end
-            connection.request(:post, "/smilfiles/#{smil_name}", body: smil_body.to_json)
+            connection.request(:post, "/smilfiles/#{smil_name}", body: smil_body.to_json)['success']
         end
 
         def update_smil(smil_name, smil_body)
