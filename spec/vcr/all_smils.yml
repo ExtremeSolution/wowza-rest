@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 17 Aug 2017 13:07:50 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"serverName":"_defaultServer_","smilFiles":[{"id":"KKK","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/KKK"},{"id":"TESTING222","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/TESTING222"},{"id":"TESTING2","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/TESTING2"},{"id":"JOEOEOE","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/JOEOEOE"},{"id":"KK","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/KK"},{"id":"T","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/T"},{"id":"JEooo","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/JEooo"},{"id":"KKKHHHJJJ","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/KKKHHHJJJ"},{"id":"HAMADA
+        GANZABIL","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/HAMADA
+        GANZABIL"},{"id":"joe_test","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/joe_test"},{"id":"TESTING22","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/TESTING22"},{"id":"SRCvid","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/SRCvid"},{"id":"TESTING222JOE","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/TESTING222JOE"},{"id":"SRC","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/SRC"},{"id":"HAMADA","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/HAMADA"},{"id":"TESTING","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/TESTING"},{"id":"JOE","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/JOE"},{"id":"KKKK","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/KKKK"},{"id":"JEo","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/JEo"},{"id":"KKKHHH","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/KKKHHH"},{"id":"JE","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/JE"},{"id":"bin","href":"/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/bin"}]}'
+    http_version: 
+  recorded_at: Thu, 17 Aug 2017 13:07:50 GMT
+recorded_with: VCR 3.0.3

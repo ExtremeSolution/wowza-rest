@@ -31,7 +31,7 @@ client = WowzaRest::Client.new(
   port: 'PORT_NUMBER',
   username: 'WOWZA_ENGINE_USERNAME',
   password: 'WOWZA_ENGINE_PASSWORD'
-) 
+)
 ```
 
 #### Applications
@@ -68,7 +68,7 @@ client.instances('APPLICATION_NAME')
 ```
 - Fetch single instance
 ```ruby
-client.get_instance('APPLICATION_NAME', 'INSTANCE_NAME') 
+client.get_instance('APPLICATION_NAME', 'INSTANCE_NAME')
 # instance name can be ommited and defaults to the default instance
 ```
 - Get a single incoming stream monitoring stats
@@ -90,6 +90,27 @@ client.delete_publisher('PUBLISHER_NAME')
 ```ruby
 client.server_status
 ```
+### SMILs
+- List all SMILs
+```ruby
+smils = client.smils
+```
+- Fetch SMIL
+```ruby
+smil = client.get_smil('SMIL_NAME')
+```
+- Create SMIL
+```ruby
+client.create_smil('SMIL_NAME', 'SMIL_BODY')
+```
+- Update SMIL
+```ruby
+client.update_smil('SMIL_NAME', 'SMIL_BODY')
+```
+- Delete SMIL
+```ruby
+client.delete_smil('SMIL_NAME')
+```
 
 ## Development
 
@@ -105,4 +126,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Extrem
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

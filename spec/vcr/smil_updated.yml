@@ -1,0 +1,90 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/smil_name
+    body:
+      encoding: UTF-8
+      string: '{"smilStreams":[{"src":"vid3.mp4","type":"video"},{"src":"vid4.mp4","type":"video"}]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 17 Aug 2017 14:38:16 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"success":false,"wowzaServer":"4.7.0","code":"404","message":"The
+        server has not found anything matching the request URI"}'
+    http_version: 
+  recorded_at: Thu, 17 Aug 2017 14:38:16 GMT
+- request:
+    method: put
+    uri: http://127.0.0.1:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/smilfiles/smil_name
+    body:
+      encoding: UTF-8
+      string: '{"smilStreams":[{"src":"vid3.mp4","type":"video"},{"src":"vid4.mp4","type":"video"}]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 17 Aug 2017 14:38:31 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Restlet-Framework/2.2.2
+      Access-Control-Expose-Headers:
+      - Date,Server,Content-Type,Content-Length,WWW-Authenticate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,PUT,DELETE,POST
+      Access-Control-Allow-Headers:
+      - Content-Type,User-Agent,If-Modified-Since,Cache-Control,Range,Authorization
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"success":true,"message":"Saved","data":null}'
+    http_version: 
+  recorded_at: Thu, 17 Aug 2017 14:38:31 GMT
+recorded_with: VCR 3.0.3
