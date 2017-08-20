@@ -13,7 +13,7 @@ module WowzaRest
         super(attrs)
       end
 
-      class SMILStream < Base; end      
+      class SMILStream < Base; end
     end
   end
 end

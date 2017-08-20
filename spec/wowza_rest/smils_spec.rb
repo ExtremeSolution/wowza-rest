@@ -1,6 +1,9 @@
 require 'spec_helper'
 
+# rubocop:disable RSpec/FilePath
 RSpec.describe WowzaRest::SMILs do
+  # rubocop:enable RSpec/FilePath
+
   let(:client) do
     WowzaRest::Client.new(host: '127.0.0.1',
                           port: '8087',
@@ -13,7 +16,7 @@ RSpec.describe WowzaRest::SMILs do
       smilStreams: [{
         src: 'vid1.mp4',
         type: 'video'
-      },{
+      }, {
         src: 'vid2.mp4',
         type: 'video'
       }]
@@ -25,7 +28,7 @@ RSpec.describe WowzaRest::SMILs do
       smilStreams: [{
         src: 'vid3.mp4',
         type: 'video'
-      },{
+      }, {
         src: 'vid4.mp4',
         type: 'video'
       }]
@@ -94,7 +97,6 @@ RSpec.describe WowzaRest::SMILs do
   end
 
   describe '#create_smil' do
-
     context 'when smil_name is not a string' do
       it 'raises InvalidArgumentType error' do
         expect do
@@ -152,7 +154,6 @@ RSpec.describe WowzaRest::SMILs do
     end
 
     context 'when smil is updated' do
-
       it 'returns true',
          vcr: { cassette_name: 'smil_updated' } do
         response = client.update_smil('smil_name', smil_body_update)
