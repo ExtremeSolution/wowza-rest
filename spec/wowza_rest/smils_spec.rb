@@ -87,10 +87,8 @@ RSpec.describe WowzaRest::SMILs do
       end
 
       it 'returns nil if smil not found' do
-        vcr: { cassette_name: 'smil__not_found' } do          
-          smil = client.get_smil('unknown_smil')
-          expect(smil).to be_nil
-        end
+        smil = client.get_smil('unknown_smil')
+        expect(smil).to be_nil
       end
     end
   end
